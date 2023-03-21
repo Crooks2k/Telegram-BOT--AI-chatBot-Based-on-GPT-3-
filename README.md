@@ -1,58 +1,55 @@
-# //proyect name here>
+# Telegram bot basado en GPT-3
 <hr>
 
-## proyect description here
-Api Rest que permite crear, eliminar, actualizar y leer todas las Movies o Rating, de igualmente cuenta dcon filtros personalizados
-donde se puede traer los datos de una pelicula de acuerdo a si es las letras iniciales, una palabra contenida o el el titulo completo de la pelicula.
-(https://backendvideoclub.onrender.com)
+## Este proyecto consiste en la creación de un bot de Telegram que utiliza la biblioteca de Telegraf y Express para implementar consultas en el chat y procesarlas mediante la API de GPT-3. El objetivo principal del bot es permitir que los usuarios realicen consultas de manera natural y obtener respuestas inteligentes y relevantes basadas en la potente tecnología de lenguaje natural de GPT-3.
 
 <hr>
  
 ## START 🚀 
 
-
 ### Contenido📋 
-* Installación
+* Uso
 * Tecnologias Aplicadas
 * Funcionalidades
 
 <hr>
 
-### Installation 🔧 
-1. $ git clone ... //Clonar el repositorio
-2. $ cd BackendVideoClub   // ir a la carpeta
-3. $ npm install       // instalar dependecias alojadas en package json
-4. $ npm run dev // ejecutar el proyecto localmente (este comando iniciara el servidor en el puerto 3030)
+### Como usar el bot para realizar consultas 🔧 
+Para esto debes tener una cuenta de telegram y escribir al usuario: https://t.me/danielviachatbot
+una vez abras el chatbot puedes usar /start para inicializar el bot.
 
 <hr>
 
 ### Tecnologias Aplicadas 📦
 
-* Node.js
-* Mongo db
-* Express
-* Cors
-* colors
+Este proyecto se ha desarrollado utilizando las siguientes tecnologías:
+
+- Telegraf: biblioteca de Node.js para crear bots de Telegram.
+- Express: framework de Node.js para crear aplicaciones web.
+- GPT-3: API de OpenAI para procesamiento de lenguaje natural avanzado.
+- Node.js: plataforma de desarrollo para aplicaciones de servidor en JavaScript.
+- NPM: gestor de paquetes de Node.js para administrar las dependencias del proyecto.
+- dotenv: para cargar variables de entorno.
+- colors: para colorear la consola.
+- cors: para permitir solicitudes entre servidores.
+- axios: para hacer solicitudes HTTP a una API externa.
+- Nodemon: para reiniciar automáticamente el servidor cuando se detectan cambios en los archivos.
+- ESLint: para mantener un código limpio y coherente.
+- Prettier: para formatear el código de manera consistente.
 
 <hr>
 
 ### Funcionalidades 📦 
- 
-1. Crear Movies
-2. Traer Todas las Movies
-3. Modificar Movies
-4. Eliminar Movies
-5. Crear Rating
-6. Traer Todas las Rating
-7. Modificar Rating
-8. Eliminar Rating
-9. Traer las Movies por el titulo completo.
-10. Traer las Movies por las primeras letras del titulo.
-11. Traer las Movies que una palabra sea contenida en el titulo.
-
+- Consultas de lenguaje natural: El bot permite hacer consultas en lenguaje natural, por ejemplo, "¿cuál es el clima hoy en Nueva York?".
+- Respuestas en lenguaje natural: El bot utiliza la API de GPT-3 para generar respuestas en lenguaje natural a partir de las consultas realizadas.
+- Comandos personalizados: El bot cuenta con comandos personalizados que permiten a los usuarios acceder a funcionalidades específicas, como la validación de APIKEYs o la configuración de opciones de configuración.
+- Interacción con el usuario: El bot puede interactuar con los usuarios mediante mensajes personalizados, lo que hace que la experiencia sea más atractiva e interactiva.
+- Integración con servicios externos: El bot puede integrarse con servicios externos como APIs para proporcionar respuestas más completas y precisas a las consultas de los usuarios.
+- Facilidad de uso: El bot es fácil de usar gracias a una interfaz de usuario intuitiva y a comandos de conversación naturales. Los usuarios pueden interactuar con el bot sin necesidad de conocimientos técnicos avanzados.
+- Personalización: El bot se puede personalizar para adaptarse a las necesidades específicas de cada usuario o grupo de usuarios, lo que hace que sea una herramienta muy versátil y útil.
 
 ### Autores ✒️ 
-* 
+* - Daniel Veloza
  
  <hr>
  
@@ -64,6 +61,7 @@ Read our license
  
  
 <hr>
+<br>
 @Crooks2k | Daniel Veloza
 
 
