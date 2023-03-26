@@ -9,7 +9,7 @@ export const validarAPIKey = async (APIKEY) => {
         [
           {
             "role": "user",
-            "content": "Hola chat gpt, necesito que hagas una presentación super corta de que eres y a la ultimo digas (puedes usar el comando /promt <mensaje> para comenzar a hacer consultas)"
+            "content": `necesito que hagas una presentación corta de que eres y antes de cada mensaje agregate un prefijo que diga Skynet {Ai-ChatBot]: <Mensaje>. A la ultimo antes de finalizar la presentación da un salto de linea y di lo siguiente: puedes usar el comando /promt <mensaje> para comenzar a hacer consultas.`
           }
         ]
       },
@@ -28,7 +28,7 @@ export const validarAPIKey = async (APIKEY) => {
   }
 }
 
-export const sendPromptToGPT = async (prompt) => {
+export const sendPromptToGPT = async (KEY, prompt) => {
   try {
     const response = await axios.post("https://api.openai.com/v1/chat/completions",
       {
@@ -43,7 +43,7 @@ export const sendPromptToGPT = async (prompt) => {
       },
       {
         "headers": {
-          "Authorization": `Bearer ${APIKEY}`,
+          "Authorization": `Bearer ${KEY}`,
           "Content-Type": "application/json",
         },
       }

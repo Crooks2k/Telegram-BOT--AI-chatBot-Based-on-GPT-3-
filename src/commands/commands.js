@@ -1,9 +1,18 @@
 import dotenv from "dotenv"
-import { Telegraf } from "telegraf"
+import { Telegraf, session } from "telegraf"
 import { validarAPIKey, sendPromptToGPT } from "../apis/apis.js";
 
 dotenv.config()
 const bot = new Telegraf(process.env.HTTP_ACCES_TG_TOKEN_BOT)
+// Agregar middleware de sesión
+bot.use(session());
+
+bot.use((ctx, next) => {
+  if (!ctx.session) {
+    ctx.session = {};
+  }
+  return next();
+});
 
 //initial commands
 bot.start((ctx)=>{
@@ -30,40 +39,44 @@ bot.settings((ctx)=>{
 })
 
 //set userapikey
-let APIKEY
 bot.command('apikey', async (ctx) => {
-  APIKEY = ctx.message.text.split(' ')[1];
-  if(!APIKEY){
-    ctx.reply("digita un apikey valido (recuerda que debe existir un espacio entre el comando /apikey y el valor de tu apikey")
+  const APIKEY = ctx.message.text.split(' ')[1];
+  if (!APIKEY) {
+    ctx.reply("Digita un API key válido (recuerda que debe existir un espacio entre el comando /apikey y el valor de tu API key)")
     return;
   }
   const isValid = await validarAPIKey(APIKEY);
-  if(isValid){
-    // store the API key in the session
-    ctx.reply(`[GPT-3.5]: ${isValid}`)
-    return;
-  }else{
-    ctx.reply("digita un apikey valido")
+  if (isValid) {
+    ctx.session.apiKey = APIKEY; // asignar el valor del API key al contexto de la sesión
+    ctx.reply(`${isValid}`)
+  } else {
+    ctx.reply("Digita un API key válido")
   }
-})
+});
 
-//send prompt
 bot.command('prompt', async (ctx) => {
-  const prompt = ctx.message.text.split(' ')[1];
-  if(!prompt){
-    ctx.reply("digita un prompt valido (recuerda que debe existir un espacio entre el comando /prompt y tu consulta")
+  const message = ctx.message.text.trim(); // Elimina espacios en blanco al principio y al final del mensaje
+  const promptIndex = message.indexOf('/prompt ');
+  if (promptIndex === -1) {
+    ctx.reply("Digita un prompt válido (recuerda que debe existir un espacio entre el comando /prompt y tu consulta)")
     return;
   }
-  if (!APIKEY) {
+  const prompt = message.substring(promptIndex + 8).trim(); // +8 para eliminar los primeros 8 caracteres de "/prompt "
+  const KEY = ctx.session.apiKey;
+  if (!prompt) {
+    ctx.reply("Digita un prompt válido (recuerda que debe existir un espacio entre el comando /prompt y tu consulta)")
+    return;
+  }
+  if (!KEY) {
     ctx.reply("Por favor ingresa un API key primero usando el comando /apikey")
     return;
   }
-  const response = await sendPromptToGPT(APIKEY, prompt);
-  if(response){
-    ctx.reply(`[GPT-3.5]: ${response}`)
-  }else(
-    ctx.reply("hubo un error al procesar tu respuesta, intenta mas tarde")
-  )
-})
+  const response = await sendPromptToGPT(KEY, prompt);
+  if (response) {
+    ctx.reply(`Skynet {Ai-ChatBot]: ${response}`)
+  } else {
+    ctx.reply("Hubo un error al procesar tu respuesta, intenta más tarde")
+  }
+});
 
 export {bot}
